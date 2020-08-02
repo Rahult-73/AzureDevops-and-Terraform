@@ -10,6 +10,10 @@ terraform {
   }
   
 }
+variable "imagebuild" {
+  type        = string 
+  description = "description"
+}
 
 resource "azurerm_resource_group" "tf_test"{
     name="tfmaingrp"
@@ -25,7 +29,7 @@ resource "azurerm_container_group" "tfcgtest"{
     os_type="Linux"
     container{
         name="weatherapi"
-        image="rahult73/weatherapi"
+        image="rahult73/weatherapi:${var.imagebuild}"
         cpu="1"
         memory="1"
         ports{
